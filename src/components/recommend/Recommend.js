@@ -7,14 +7,14 @@ import * as AlbumModel from "@/model/album"
 import Scroll from "@/common/scroll/Scroll"
 import Loading from "@/common/loading/Loading"
 import LazyLoad, {forceCheck} from "react-lazyload"
-import Album from "../album/Album"
+// import Album from "../album/Album"
+import Album from "@/containers/Album"
 
 import "swiper/dist/css/swiper.css"
 import './recommend.styl'
 
 class Recommend extends Component {
     constructor(props) {
-        console.log(1111, props);
         super(props)
         this.state = {
             loading: true,
@@ -25,6 +25,11 @@ class Recommend extends Component {
     }
 
     componentDidMount() {
+        this.getCarousel()
+        this.getNewAlbum()
+    }
+
+    getCarousel() {
         getCarousel().then((res) => {
             console.log("获取轮播：");
             if (res) {
@@ -46,6 +51,9 @@ class Recommend extends Component {
                 }
             }
         });
+    }
+
+    getNewAlbum() {
         getNewAlbum().then((res) => {
             console.log("获取最新专辑：");
             if (res) {
@@ -65,7 +73,6 @@ class Recommend extends Component {
                 }
             }
         });
-
     }
 
     toLink(linkUrl) {
@@ -83,6 +90,7 @@ class Recommend extends Component {
         })
     }
 
+
     render() {
         let {match} = this.props;
 
@@ -90,8 +98,7 @@ class Recommend extends Component {
             //通过函数创建专辑对象
             let album = AlbumModel.createAlbumByList(item);
             return (
-                <div className="album-wrapper" key={album.mId}
-                     onClick={this.toAlbumDetail(`${match.url + '/' + album.mId}`)}>
+                <div className="album-wrapper" key={album.mId} onClick={this.toAlbumDetail(`${match.url + '/' + album.mId}`)}>
                     <div className="left">
                         <LazyLoad>
                             <img src={album.img} width="100%" height="100%" alt={album.name}/>
@@ -137,7 +144,7 @@ class Recommend extends Component {
                             <div className="swiper-pagination"></div>
                         </div>
                         <div className="album-container">
-                            <h1 className="title">最新专辑</h1>
+                            <h1 className="title" >最新专辑</h1>
                             <div className="album-list">
                                 {albums}
                             </div>

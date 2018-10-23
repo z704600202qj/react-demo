@@ -4,7 +4,7 @@ import "./loading.styl"
 
 class Loading extends React.Component {
     render() {
-        let displayStyle = this.props.show == true ? {display: ""} : {display: "none"};
+        let displayStyle = this.props.show === true ? {display: ""} : {display: "none"};
         return (
             <div className="loading-container" style={displayStyle}>
                 <div className="loading-wrapper">

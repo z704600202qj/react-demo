@@ -79,11 +79,28 @@ class Album extends React.Component {
         console.log(e);
     }
 
+    playerShow(song) {
+        return (e) => {
+            this.props.setSongs([song]);
+            this.props.changeCurrentSong(song);
+        };
+    }
+
+    /**
+     * 选择歌曲
+     */
+    selectSong(song) {
+        return (e) => {
+            this.props.setSongs([song]);
+            this.props.changeCurrentSong(song);
+        };
+    }
+
     render() {
         let album = this.state.album;
         let songs = this.state.songs.map((song) => {
             return (
-                <div className="song" key={song.id}>
+                <div className="song" key={song.id} onClick={this.selectSong(song)}>
                     <div className="song-name">{song.name}</div>
                     <div className="song-singer">{song.singer}</div>
                 </div>
@@ -102,7 +119,7 @@ class Album extends React.Component {
                             <div className="filter"></div>
                         </div>
                         <div className="play-wrapper" ref="playButtonWrapper">
-                            <div className="play-button">
+                            <div className="play-button" onClick={this.playerShow}>
                                 <i className="icon-play"></i>
                                 <span>播放全部</span>
                             </div>
@@ -122,6 +139,12 @@ class Album extends React.Component {
                                             {album.desc}
                                         </div>
                                     </div>
+
+                                </div>
+                                <div>
+                                    {
+                                    songs
+                                }
                                 </div>
                             </Scroll>
                         </div>
