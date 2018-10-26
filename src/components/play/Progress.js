@@ -1,6 +1,7 @@
 import React from "react"
-import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom"
+import PropTypes from "prop-types"
+
 import "./progress.styl"
 
 class Progress extends React.Component {
@@ -9,17 +10,13 @@ class Progress extends React.Component {
         if (!this.progressBarWidth) {
             this.progressBarWidth = ReactDOM.findDOMNode(this.refs.progressBar).offsetWidth;
         }
-
     }
-
     componentDidMount() {
         let progressBarDOM = ReactDOM.findDOMNode(this.refs.progressBar);
         let progressDOM = ReactDOM.findDOMNode(this.refs.progress);
         let progressBtnDOM = ReactDOM.findDOMNode(this.refs.progressBtn);
-
-        console.log(progressBarDOM);
-
         this.progressBarWidth = progressBarDOM.offsetWidth;
+
         let {disableButton, disableDrag, onDragStart, onDrag, onDragEnd} = this.props;
         if (disableButton !== true && disableDrag !== true) {
             //触摸开始位置
@@ -63,39 +60,41 @@ class Progress extends React.Component {
                 }
             });
         }
-
     }
-
     render() {
         //进度值：范围 0-1
-        let {progress, disableButton} = this.props;
+        let {progress, disableButton}  = this.props;
         if (!progress) progress = 0;
 
         //按钮left值
         let progressButtonOffsetLeft = 0;
-        if (this.progressBarWidth) {
+        if(this.progressBarWidth){
             progressButtonOffsetLeft = progress * this.progressBarWidth;
         }
 
         return (
             <div className="progress-bar" ref="progressBar">
                 <div className="progress-load"></div>
-                <div className="progress" style={{width: `${progress * 100}%`}} ref="progress"></div>
+                <div className="progress" style={{width:`${progress * 100}%`}} ref="progress"></div>
                 {
-                    disableButton === true ? "" : <div className="progress-button" style={{left: progressButtonOffsetLeft}} ref="progressBtn"></div>
+                    disableButton === true ? "" :
+                        <div className="progress-button" style={{left:progressButtonOffsetLeft}} ref="progressBtn"></div>
                 }
             </div>
         );
-
     }
 }
 
-Progress.prototype = {
+Progress.propTypes = {
+    //进度
     progress: PropTypes.number.isRequired,
+    //是否禁用按钮
     disableButton: PropTypes.bool,
+    //是否禁用拖拽
     disableDrag: PropTypes.bool,
     onDragStart: PropTypes.func,
     onDrag: PropTypes.func,
     onDragEnd: PropTypes.func
-}
+};
+
 export default Progress

@@ -7,12 +7,13 @@ import * as ActionTypes from "./actionTypes"
 
 //需要存储的初始状态数据
 const initialState = {
-    showStatus: false,  //显示状态
-    song: {},  //当前歌曲
-    songs: []  //歌曲列表
-};
+        showStatus: false,  //显示状态
+        song: {},  //当前歌曲
+        songs: []  //歌曲列表
+    };
 
 //拆分Reducer
+
 //显示或隐藏播放状态
 function showStatus(showStatus = initialState.showStatus, action) {
     switch (action.type) {
@@ -22,6 +23,7 @@ function showStatus(showStatus = initialState.showStatus, action) {
             return showStatus;
     }
 }
+
 //修改当前歌曲
 function song(song = initialState.song, action) {
     switch (action.type) {
@@ -31,6 +33,7 @@ function song(song = initialState.song, action) {
             return song;
     }
 }
+
 //添加或移除歌曲
 function songs(songs = initialState.songs, action) {
     switch (action.type) {
@@ -42,6 +45,8 @@ function songs(songs = initialState.songs, action) {
             return songs;
     }
 }
+
+
 //合并Reducer
 const reducer = combineReducers({
     showStatus,

@@ -1,9 +1,15 @@
-import React, {Component} from 'react'
-import './ranking.styl'
+import React from "react"
 
-class Ranking extends Component {
+import "./ranking.styl"
+
+
+class Ranking extends React.Component {
     render() {
-        return <div>Ranking</div>
+        return (
+            <div className="music-ranking">
+                Ranking
+            </div>
+        );
     }
 }
 

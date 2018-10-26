@@ -1,9 +1,15 @@
-import React,{Component} from 'react'
-import './search.styl'
+import React from "react"
 
-class Search extends Component{
-    render(){
-        return <div>searc</div>
+import "./search.styl"
+
+
+class Search extends React.Component {
+    render() {
+        return (
+            <div className="music-search">
+                Search
+            </div>
+        );
     }
 }
 

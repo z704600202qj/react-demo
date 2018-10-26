@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react"
 import loadingImg from "./loading.gif"
 import "./loading.styl"
 
 class Loading extends React.Component {
     render() {
-        let displayStyle = this.props.show === true ? {display: ""} : {display: "none"};
+        let displayStyle = this.props.show === true ?
+            {display:""} : {display:"none"};
         return (
             <div className="loading-container" style={displayStyle}>
                 <div className="loading-wrapper">
@@ -13,7 +14,6 @@ class Loading extends React.Component {
                 </div>
             </div>
         );
-
     }
 }
 

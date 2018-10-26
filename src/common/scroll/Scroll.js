@@ -13,7 +13,6 @@ class Scroll extends React.Component {
     }
     componentDidMount() {
         this.scrollView = ReactDOM.findDOMNode(this.refs.scrollView);
-        console.log(this.props);
         if (!this.bScroll) {
             this.bScroll = new BScroll(this.scrollView, {
                 //实时派发scroll事件
